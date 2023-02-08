@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<title>Code Tab</title>
+	<style id="sttag">
+	<link rel='icon' href="./download.png"></link>
+		* {
+			padding: 0%;
+			margin: 0%;
+		}
+
+		body {
+			background-image: url('bg.jpg');
+			background-color: black;
+			background-size: 101%;
+			background-repeat: no-repeat;
+			text-align: center;
+		}
+
+		#searchbar {
+			padding: 0.5%;
+			width: 45%;
+			/* 	margin-left: 28%; */
+			/* 	margin-top: 40vh; */
+			border-radius: 10px;
+			border: 2px solid white;
+			outline: none;
+			font-size: larger;
+		}
+
+		#searchbar:focus {
+			padding: 0.5%;
+			width: 45%;
+			border-radius: 10px;
+			border: 2px solid red;
+			outline: none;
+		}
+
+		#urlinput {
+			padding: 0.5%;
+			width: 45%;
+			/* 	margin-left: 28%; */
+			/* 	margin-top: 40vh; */
+			border: 2px solid black;
+			border-radius: 10px;
+			border: 2px solid black;
+			outline: none;
+			font-size: larger;
+			margin: 0.8%;
+		}
+
+		#urlinput:focus {
+			padding: 0.5%;
+			width: 45%;
+			border-radius: 10px;
+			border: 2px solid red;
+			outline: none;
+		}
+
+		#settings {
+			background-color: white;
+			border: black 2px solid;
+			border-radius: 100px;
+			/* 	padding: 1%; */
+			margin: 0px 6px;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		#todo {
+			background-color: white;
+			border: black 2px solid;
+			border-radius: 100px;
+			/* 	padding: 1%; */
+			margin: 0px 6px;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		#searchengine {
+			background-color: white;
+			border: black 2px solid;
+			border-radius: 100px;
+			/* 	padding: 1%; */
+			margin: 0px 6px;
+			cursor: pointer;
+			text-align: center;
+			width: 4%;
+		}
+
+		#settings:hover {
+			background-color: #b5b5b5;
+			;
+		}
+
+		#Logo {
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 550%;
+			color: white;
+			margin-top: 35vh;
+			padding-bottom: 5%;
+		}
+
+		#sbox {
+			width: 64vw;
+			margin-top: -21%;
+			margin-left: 17%;
+			height: 52vh;
+			background-color: black;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		#csstextarea {
+			background-color: black;
+			color: white;
+			font-size: 130%;
+			padding: 1%;
+			width: 95%;
+			height: 80%;
+			max-width: 95%;
+			max-height: 80%;
+			min-width: 95%;
+			min-height: 80%;
+		}
+
+		#reset {
+			background-color: white;
+			border-radius: 50px;
+		}
+
+		#shortcuts {
+			background-color: white;
+			border: black 2px solid;
+			border-radius: 100px;
+			/* 	padding: 1%; */
+			margin: 0px 6px;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		#shorts {
+			overflow-y: scroll;			
+		}
+		
+		#shortbox {
+			background-color: white;
+			width: 55vw;
+			height: 52vh;
+			margin-left: 24%;
+			border-radius: 20px;
+			z-index: 1;
+			position: absolute;
+			top: 14%;
+		}
+	</style>
+</head>
+
+<body id="body">
+	<h1 id="Logo">Code Tab</h1>
+	<img id="searchengine" src='./blogo.svg'></img>
+	<input type="text" id="searchbar" placeholder="Brave Search"></input>
+	<div id="sbox" class="hidden">
+		<img src='reset.svg' id="reset"></img>
+		<h1 style="color: white; font-family: 'Courier New', Courier, monospace;">CSS</h1>
+		<textarea style="overflow-x: scroll;" cols="30" rows="30" id="csstextarea"
+			placeholder="Customize This page here by CSS"></textarea>
+	</div>
+
+	<!-- 	News code Here! -->
+	<div style="padding: 5%; text-align: start; margin-left: 20%;">
+		<div style=" display: flex; justify-content: space-between; width: 70%">
+			<h1 style="font-size: xx-large; text-align: start; color: white;">Tech News</h1>
+			<div>
+				<input type="text" id="newSearch" placeholder="search for news"></input>
+				<a target="blank" href="https://notebook.sharonsandeep.repl.co/"><img id="todo" src='todo.svg'></img></a>
+				<img id="shortcuts" src='shortcuts.svg'></img>
+				<img id="settings" src='settings.svg'></img>
+			</div>
+		</div>
+		<div id="newsbox" class="row row-cols-1 row-cols-md-3 g-4">
+			<div style="width: 33%;" class="col"></div>
+		</div>
+	</div>
+
+	<!-- 	Shortcuts -->
+	<div id="shortbox" style="display: none; align-items: start; justify-content: center;">
+		<div id="shorts" style="height: 65%; width: 90%; background-color: grey; margin: 1%;">
+			<a style="cursor: pointer;"></a>
+		</div>
+		<button type="button" id="addURL" class="btn btn-dark m-3">Add</button>
+		<input type="text" id="urlinput" placeholder="Paste URL Here.." />
+	</div>
+</body>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</html>

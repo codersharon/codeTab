@@ -1,0 +1,72 @@
+* {
+	padding: 0%;
+	margin: 0%;
+}
+
+body {
+	background-image: url('bg.jpg');
+	background-color: black;
+	background-size: 101%;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+#searchbar {
+	padding: 0.5%;
+	width: 45%;
+/* 	margin-left: 28%; */
+/* 	margin-top: 40vh; */
+	border-radius: 10px;
+	border: 2px solid white;
+	outline: none;
+	font-size: larger;
+}
+
+#searchbar:focus {
+	padding: 0.5%;
+	width: 45%;
+	border-radius: 10px;
+	border: 2px solid red;
+	outline: none;
+}
+
+#settings {
+	background-color: white;
+	border: black 2px solid;
+	border-radius: 100px;
+/* 	padding: 1%; */
+	margin: 0px 6px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#settings:hover {
+	background-color: #b5b5b5;;
+}
+
+#Logo {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 550%;
+	color: white;
+	margin-top: 35vh;
+	padding-bottom: 5%;
+}
+
+#sbox {
+	width: 19vw;
+	margin-top: -31%;
+	height: 99vh;
+	background-color: black;
+}
+.hidden {
+	display: none;
+}
+
+#csstextarea {
+	background-color: black;
+	color: white;
+	font-size: 130%;
+	padding: 1%;
+	max-width: 326px;
+	max-height: 914px;
+}
