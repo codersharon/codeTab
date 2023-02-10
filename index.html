@@ -15,9 +15,8 @@
 		}
 
 		body {
-			background-image: url('bg.jpg');
 			background-color: black;
-			background-size: 101%;
+			background-size: cover;
 			background-repeat: no-repeat;
 			text-align: center;
 		}
@@ -167,7 +166,7 @@
 	</style>
 </head>
 
-<body id="body">
+<body class="" id="body">
 	<h1 id="Logo">Code Tab</h1>
 	<img id="searchengine" src='./blogo.svg'></img>
 	<input type="text" id="searchbar" placeholder="Brave Search"></input>
@@ -187,6 +186,7 @@
 				<a target="_blank" href="https://notebook.sharonsandeep.repl.co/"><img id="todo" src='todo.svg'></img></a>
 				<img id="shortcuts" src='shortcuts.svg'></img>
 				<img id="settings" src='settings.svg'></img>
+				<button disabled type="button" id="darkButton" class="btn btn-primary">Dark Mode</button>
 			</div>
 		</div>
 		<div id="newsbox" class="row row-cols-1 row-cols-md-2 g-4">

@@ -14,6 +14,7 @@ const shorts = document.getElementById('shorts');
 const addURL = document.getElementById('addURL');
 const urlinput = document.getElementById('urlinput');
 const newSearch = document.getElementById('newSearch');
+const darkButton = document.getElementById('darkButton');
 glogo = './glogo.png';
 blogo = './blogo.svg';
 ulogo = './search.svg'
@@ -298,3 +299,19 @@ newSearch.addEventListener('keypress', async (e)=>{
 	}
 	}
 })
+
+
+
+
+
+
+// Dark mode.
+// darkButton.addEventListener('click', ()=>{
+// 	if (body.className == 'bg-dark') {
+// 		body.classList.add('bg-light', 'text-dark')
+// 		body.classList.remove('bg-dark', 'text-light')
+// 	} else if(body.className == 'bg-light') {
+// 		body.classList.add('bg-dark', 'text-light')
+// 		body.classList.remove('bg-light', 'text-dark')
+// 	}
+// })
