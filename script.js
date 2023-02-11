@@ -206,7 +206,6 @@ function deleShortcut(id) {
 function showShortCuts() {
 	if (localStorage.getItem('urls')) {
 		urls = localStorage.getItem('urls').split(',');
-		console.log(urls)
 		shorts.innerHTML = urls.map((url) => {
 			return `<div><a href=${url} >${url}</a><img id=${url} onClick="deleShortcut(this.id)" src="./delete.svg" /><div>`;
 		})

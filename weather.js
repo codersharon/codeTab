@@ -22,7 +22,6 @@ const getWeather = (city) => {
 	)
 		.then((response) => response.json())
 		.then((response) => {
-			console.log(response);
 			let cloud_pct = document.getElementById("cloud_pct");
 			cloud_pct.textContent = response.cloud_pct;
 			let temp = document.getElementById("temp");
