@@ -15,6 +15,11 @@ const addURL = document.getElementById('addURL');
 const urlinput = document.getElementById('urlinput');
 const newSearch = document.getElementById('newSearch');
 const darkButton = document.getElementById('darkButton');
+const openWeather = document.getElementById('openWeather');
+const wbox = document.getElementById('wbox');
+const nbox = document.getElementById('nbox');
+const showtech = document.getElementById('showtech');
+
 glogo = './glogo.png';
 blogo = './blogo.svg';
 ulogo = './search.svg'
@@ -71,10 +76,10 @@ searchbar.addEventListener('click', () => {
 async function getTechNews() {
 	const response = await fetch('https://NewTabAPI.sharonsandeep.repl.co/');
 	const resjson = await response.json()
-	
+
 	// showing news
 	let str = ""
-	for(let news of resjson.articles) {
+	for (let news of resjson.articles) {
 		news.description = news.description.slice(0, 88) + "...";
 		news.title = news.title.slice(0, 70) + "...";
 		if (news.urlToImage == null) {
@@ -90,7 +95,7 @@ async function getTechNews() {
 		  </div>
 		</div>`;
 			newsbox.innerHTML = str;
-		} else if(news.urlToImage!=null) {
+		} else if (news.urlToImage != null) {
 			str = str + `<div class="col">
 			    <div class="card text-bg-dark">
 			      <img src=${news.urlToImage} class="card-img-top" alt="image">
@@ -102,7 +107,7 @@ async function getTechNews() {
 			    </div>
 			  </div>`;
 			newsbox.innerHTML = str;
-		} else if(news.description == null && news.urlToImage == null) {
+		} else if (news.description == null && news.urlToImage == null) {
 			str = str + `<div class="col">
 			    <div class="card text-bg-dark">
 			      <img src=${a} class="card-img-top" alt="image">
@@ -114,7 +119,7 @@ async function getTechNews() {
 			    </div>
 			  </div>`;
 			newsbox.innerHTML = str;
-		} else if(news.description == null) {
+		} else if (news.description == null) {
 			str = str + `<div class="col">
 			    <div class="card text-bg-dark">
 			      <img src=${news.urlToImage} class="card-img-top" alt="image">
@@ -126,9 +131,9 @@ async function getTechNews() {
 			    </div>
 			  </div>`;
 			newsbox.innerHTML = str;
+		}
+		// showing news.
 	}
-	// showing news.
-}
 }
 
 getTechNews();
@@ -186,7 +191,7 @@ shortcuts.addEventListener('click', () => {
 function deleShortcut(id) {
 	urls = []
 	urls = localStorage.getItem('urls').split(',')
-	if(urls.indexOf(id) == 0) {
+	if (urls.indexOf(id) == 0) {
 		urls.splice(urls.indexOf(id), 1);
 		localStorage.setItem('urls', urls);
 		showShortCuts();
@@ -203,7 +208,7 @@ function showShortCuts() {
 		urls = localStorage.getItem('urls').split(',');
 		console.log(urls)
 		shorts.innerHTML = urls.map((url) => {
-			return `<div><a href=${url} >${url}</a><img id=${url} onClick="deleShortcut(this.id)" src="./delete.svg" /><div>`;			
+			return `<div><a href=${url} >${url}</a><img id=${url} onClick="deleShortcut(this.id)" src="./delete.svg" /><div>`;
 		})
 	} else { console.log('not id founded') }
 }
@@ -234,18 +239,18 @@ showShortCuts()
 
 
 // Search News Functionality.
-newSearch.addEventListener('keypress', async (e)=>{
-	if(e.keyCode == 13) {
+newSearch.addEventListener('keypress', async (e) => {
+	if (e.keyCode == 13) {
 		const r = await fetch(`https://NewTabAPI.sharonsandeep.repl.co/${newSearch.value}`);
 		const resjson = await r.json();
 
-				// showing news
+		// showing news
 		let str = ""
-		for(let news of resjson.articles) {
-		news.description = news.description.slice(0, 88) + "...";// eslint-disable-line no-use-before-define
-		news.title = news.title.slice(0, 70) + "...";// eslint-disable-line no-use-before-define
+		for (let news of resjson.articles) {
+			news.description = news.description.slice(0, 88) + "...";// eslint-disable-line no-use-before-define
+			news.title = news.title.slice(0, 70) + "...";// eslint-disable-line no-use-before-define
 			if (news.urlToImage == null) {
-					str = str + `<div class="col">
+				str = str + `<div class="col">
 						<div class="card text-bg-dark">
 				      <img src=${a} style="width: 50%;" class="card-img-top" alt="image">
 				      <div class="card-body">
@@ -257,7 +262,7 @@ newSearch.addEventListener('keypress', async (e)=>{
 				  </div>
 				</div>`;
 				newsbox.innerHTML = str;
-			} else if(news.urlToImage!=null) {
+			} else if (news.urlToImage != null) {
 				str = str + `<div class="col">
 				    <div class="card text-bg-dark">
 				      <img src=${news.urlToImage} class="card-img-top" alt="image">
@@ -269,7 +274,7 @@ newSearch.addEventListener('keypress', async (e)=>{
 				    </div>
 				  </div>`;
 				newsbox.innerHTML = str;
-			} else if(news.description == null && news.urlToImage == null) {
+			} else if (news.description == null && news.urlToImage == null) {
 				str = str + `<div class="col">
 				    <div class="card text-bg-dark">
 				      <img src=${a} class="card-img-top" alt="image">
@@ -281,7 +286,7 @@ newSearch.addEventListener('keypress', async (e)=>{
 				    </div>
 				  </div>`;
 				newsbox.innerHTML = str;
-			} else if(news.description == null) {
+			} else if (news.description == null) {
 				str = str + `<div class="col">
 				    <div class="card text-bg-dark">
 				      <img src=${news.urlToImage} class="card-img-top" alt="image">
@@ -292,10 +297,10 @@ newSearch.addEventListener('keypress', async (e)=>{
 				      </div>
 				    </div>
 				  </div>`;
-			newsbox.innerHTML = str;
+				newsbox.innerHTML = str;
+			}
+			// showing news.
 		}
-		// showing news.
-	}
 	}
 })
 
@@ -305,12 +310,36 @@ newSearch.addEventListener('keypress', async (e)=>{
 
 
 // Dark mode.
-darkButton.addEventListener('click', ()=>{
-	if(body.style.background == 'black') {
+darkButton.addEventListener('click', () => {
+	if (body.style.background == 'black') {
 		body.style.background = 'white';
-		body.style.color = 'black'
+		body.style.color = '#202529db'
 	} else {
 		body.style.background = 'black';
-		body.style.color = 'white'
+		body.style.color = '#202529db'
+	}
+})
+
+
+
+// Weather functionalities.
+openWeather.addEventListener('click', () => {
+	if (wbox.style.display == 'none') {
+		wbox.style.display = ''
+		nbox.style.display = 'none'
+	} else {
+		wbox.style.display = 'none'
+		nbox.style.display = ''
+	}
+})
+
+showtech.style.cursor = 'pointer';
+showtech.addEventListener('click', () => {
+	if (wbox.style.display == 'none') {
+		wbox.style.display = ''
+		nbox.style.display = 'none'
+	} else {
+		wbox.style.display = 'none'
+		nbox.style.display = ''
 	}
 })
