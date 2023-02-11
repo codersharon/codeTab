@@ -78,8 +78,8 @@ async function getTechNews() {
 			// showing news
 	let str = ""
 	for(let news of resjson.articles) {
-		let d = news.description;
-		news.description = d.slice(0, 100) + "...";
+		let d = await news.description;
+		news.description = await d.slice(0, 100) + "...";
 		if (news.urlToImage == null) {
 			str = str + `<div class="col">
 				<div class="card text-bg-dark">
