@@ -71,11 +71,8 @@ searchbar.addEventListener('click', () => {
 async function getTechNews() {
 	const response = await fetch('https://NewTabAPI.sharonsandeep.repl.co/');
 	const resjson = await response.json()
-	function openPage(url) {
-		window.location = url
-	}
-
-			// showing news
+	
+	// showing news
 	let str = ""
 	for(let news of resjson.articles) {
 		news.description = news.description.slice(0, 88) + "...";
@@ -245,7 +242,8 @@ newSearch.addEventListener('keypress', async (e)=>{
 				// showing news
 		let str = ""
 		for(let news of resjson.articles) {
-			news.description = news.description.slice(0, 100) + "..."
+		news.description = news.description.slice(0, 88) + "...";// eslint-disable-line no-use-before-define
+		news.title = news.title.slice(0, 70) + "...";// eslint-disable-line no-use-before-define
 			if (news.urlToImage == null) {
 					str = str + `<div class="col">
 						<div class="card text-bg-dark">
@@ -307,12 +305,12 @@ newSearch.addEventListener('keypress', async (e)=>{
 
 
 // Dark mode.
-// darkButton.addEventListener('click', ()=>{
-// 	if (body.className == 'bg-dark') {
-// 		body.classList.add('bg-light', 'text-dark')
-// 		body.classList.remove('bg-dark', 'text-light')
-// 	} else if(body.className == 'bg-light') {
-// 		body.classList.add('bg-dark', 'text-light')
-// 		body.classList.remove('bg-light', 'text-dark')
-// 	}
-// })
+darkButton.addEventListener('click', ()=>{
+	if(body.style.background == 'black') {
+		body.style.background = 'white';
+		body.style.color = 'black'
+	} else {
+		body.style.background = 'black';
+		body.style.color = 'white'
+	}
+})
