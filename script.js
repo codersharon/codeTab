@@ -76,26 +76,14 @@ searchbar.addEventListener('click', () => {
 async function getTechNews() {
 	const response = await fetch('https://NewTabAPI.sharonsandeep.repl.co/');
 	const resjson = await response.json()
+	console.log(resjson.articles)
 
 	// showing news
 	let str = ""
 	for (let news of resjson.articles) {
-		news.description = news.description.slice(0, 88) + "...";
-		news.title = news.title.slice(0, 70) + "...";
-		if (news.urlToImage == null) {
-			str = str + `<div class="col">
-				<div class="card text-bg-dark">
-		      <img src=${a} style="width: 50%;" class="card-img-top" alt="image">
-		      <div class="card-body">
-		        <h5 class="card-title">${news.title}</h5>
-		        <p class="card-text">${news.description}</p>
-						<button type="button" class="btn btn-primary"><a href=${news.url} style="color: white; text-decoration: none" target="_blank">Read More</a></button>
-		      </div>
-		    </div>
-		  </div>
-		</div>`;
-			newsbox.innerHTML = str;
-		} else if (news.urlToImage != null) {
+		if( news.title == null ) { news.title ='Title not Available' } else { news.title = news.title.slice(0, 70) + "..." };
+		if( news.description == null ) { news.description ='Description not Available' } else { news.description = news.description.slice(0, 70) + "..." };
+		if( news.urlToImage == null ) { news.urlToImage = a };
 			str = str + `<div class="col">
 			    <div class="card text-bg-dark">
 			      <img src=${news.urlToImage} class="card-img-top" alt="image">
@@ -107,32 +95,6 @@ async function getTechNews() {
 			    </div>
 			  </div>`;
 			newsbox.innerHTML = str;
-		} else if (news.description == null && news.urlToImage == null) {
-			str = str + `<div class="col">
-			    <div class="card text-bg-dark">
-			      <img src=${a} class="card-img-top" alt="image">
-			      <div class="card-body">
-			        <h5 class="card-title">${news.title}</h5>
-			        <p class="card-text">No Iformation</p>
-							<button type="button" class="btn btn-primary"><a href=${news.url} style="color: white; text-decoration: none" target="_blank">Read More</a></button>
-			      </div>
-			    </div>
-			  </div>`;
-			newsbox.innerHTML = str;
-		} else if (news.description == null) {
-			str = str + `<div class="col">
-			    <div class="card text-bg-dark">
-			      <img src=${news.urlToImage} class="card-img-top" alt="image">
-			      <div class="card-body">
-			        <h5 class="card-title">${news.title}</h5>
-			        <p class="card-text">No Iformation</p>
-							<button type="button" class="btn btn-primary"><a href=${news.url} style="color: white; text-decoration: none" target="_blank">Read More</a></button>
-			      </div>
-			    </div>
-			  </div>`;
-			newsbox.innerHTML = str;
-		}
-		// showing news.
 	}
 }
 
