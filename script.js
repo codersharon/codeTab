@@ -24,6 +24,7 @@ glogo = './glogo.png';
 blogo = './blogo.svg';
 ulogo = './search.svg'
 a = './noimage.png'
+GPT = './GPTLOGO.png'
 csstextarea.innerText = `${CSScode}`;
 
 function myfunc() {
