@@ -19,12 +19,14 @@ const openWeather = document.getElementById('openWeather');
 const wbox = document.getElementById('wbox');
 const nbox = document.getElementById('nbox');
 const showtech = document.getElementById('showtech');
-
+const GPTbox = document.getElementById('GPTbox')
+const GPTAnswer = document.getElementById('GPTanswer')
 glogo = './glogo.png';
 blogo = './blogo.svg';
 ulogo = './search.svg'
+GPT = './GPTLOGO.png';
 a = './noimage.png'
-GPT = './GPTLOGO.png'
+
 csstextarea.innerText = `${CSScode}`;
 
 function myfunc() {
@@ -108,12 +110,15 @@ google = 'https://www.google.com/search?q=';
 brave = 'https://search.brave.com/search?q='
 surl = '';
 engine = brave;
+chatGPT = 'gpt',
 
 searchengine.addEventListener('click', () => {
-	if (engine == brave) {
+	if (engine == chatGPT) {
 		engine = google;
 		searchengine.src = glogo;
 		searchbar.placeholder = 'Google Search';
+		nbox.style.display = ''
+		GPTbox.style.display = 'none'
 	} else if (engine == google) {
 		engine = surl;
 		searchengine.src = ulogo;
@@ -122,13 +127,36 @@ searchengine.addEventListener('click', () => {
 		engine = brave;
 		searchengine.src = blogo;
 		searchbar.placeholder = 'Brave Search';
+	} else if (engine == brave) {
+		engine = chatGPT;
+		searchengine.src = GPT;
+		searchbar.placeholder = 'Use ChatGPT';
+		nbox.style.display = 'none'
+		GPTbox.style.display = 'flex'
 	}
 })
 
 searchbar.addEventListener('keypress', (e) => {
-	if (e.keyCode == 13) {
+	if (e.keyCode == 13 && engine != chatGPT) {
 		query = searchbar.value
-		window.location = engine + query
+		window.location = engine + query;
+		searchbar.value = ""
+	} else if(e.keyCode == 13 && engine == chatGPT ) {
+			async function askq() {
+				const url = 'https://GPTAPI.sharonsandeep.repl.co/newchat';
+				const data = {query: searchbar.value};
+				const response = await fetch(url, {
+				    method: 'POST',
+				    headers: {
+				        'Content-Type': 'application/json',
+				    },
+				    body: JSON.stringify(data),
+					});
+			
+					const answer = await response.text();
+					GPTAnswer.innerText = answer
+			}
+		askq()
 	}
 
 })
