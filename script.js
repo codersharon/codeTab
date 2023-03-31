@@ -84,10 +84,10 @@ async function getTechNews() {
 	// showing news
 	let str = ""
 	for (let news of resjson.articles) {
-		if( news.title == null ) { news.title ='Title not Available' } else { news.title = news.title.slice(0, 70) + "..." };
-		if( news.description == null ) { news.description ='Description not Available' } else { news.description = news.description.slice(0, 70) + "..." };
-		if( news.urlToImage == null ) { news.urlToImage = a };
-			str = str + `<div class="col">
+		if (news.title == null) { news.title = 'Title not Available' } else { news.title = news.title.slice(0, 70) + "..." };
+		if (news.description == null) { news.description = 'Description not Available' } else { news.description = news.description.slice(0, 70) + "..." };
+		if (news.urlToImage == null) { news.urlToImage = a };
+		str = str + `<div class="col">
 			    <div class="card text-bg-dark">
 			      <img src=${news.urlToImage} class="card-img-top" alt="image">
 			      <div class="card-body">
@@ -97,7 +97,7 @@ async function getTechNews() {
 			      </div>
 			    </div>
 			  </div>`;
-			newsbox.innerHTML = str;
+		newsbox.innerHTML = str;
 	}
 }
 
@@ -112,50 +112,54 @@ surl = '';
 engine = brave;
 chatGPT = 'gpt',
 
-searchengine.addEventListener('click', () => {
-	if (engine == chatGPT) {
-		engine = google;
-		searchengine.src = glogo;
-		searchbar.placeholder = 'Google Search';
-		nbox.style.display = ''
-		GPTbox.style.display = 'none'
-	} else if (engine == google) {
-		engine = surl;
-		searchengine.src = ulogo;
-		searchbar.placeholder = 'Paste The URL';
-	} else if (engine == surl) {
-		engine = brave;
-		searchengine.src = blogo;
-		searchbar.placeholder = 'Brave Search';
-	} else if (engine == brave) {
-		engine = chatGPT;
-		searchengine.src = GPT;
-		searchbar.placeholder = 'Use ChatGPT';
-		nbox.style.display = 'none'
-		GPTbox.style.display = 'flex'
-	}
-})
+	searchengine.addEventListener('click', () => {
+		if (engine == chatGPT) {
+			engine = google;
+			searchengine.src = glogo;
+			searchbar.placeholder = 'Google Search';
+			nbox.style.display = ''
+			GPTbox.style.display = 'none'
+		} else if (engine == google) {
+			engine = surl;
+			searchengine.src = ulogo;
+			searchbar.placeholder = 'Paste The URL';
+		} else if (engine == surl) {
+			engine = brave;
+			searchengine.src = blogo;
+			searchbar.placeholder = 'Brave Search';
+		} else if (engine == brave) {
+			engine = chatGPT;
+			searchengine.src = GPT;
+			searchbar.placeholder = 'Use ChatGPT';
+			nbox.style.display = 'none'
+			GPTbox.style.display = 'flex'
+		}
+	})
 
 searchbar.addEventListener('keypress', (e) => {
 	if (e.keyCode == 13 && engine != chatGPT) {
 		query = searchbar.value
 		window.location = engine + query;
 		searchbar.value = ""
-	} else if(e.keyCode == 13 && engine == chatGPT ) {
-			async function askq() {
-				const url = 'https://GPTAPI.sharonsandeep.repl.co/newchat';
-				const data = {query: searchbar.value};
-				const response = await fetch(url, {
-				    method: 'POST',
-				    headers: {
-				        'Content-Type': 'application/json',
-				    },
-				    body: JSON.stringify(data),
-					});
+	} else if (e.keyCode == 13 && engine == chatGPT) {
+		async function askq() {
+			const url = 'https://GPTAPI.sharonsandeep.repl.co/newchat';
+			const data = { query: searchbar.value };
+			const response = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+			GPTAnswer.innerHTML = await `<img style="width: 10%;" src="./loading.gif"></img>`
+			// GPTAnswer.style.width = await 'fit-content';
 			
-					const answer = await response.text();
-					GPTAnswer.innerText = answer
-			}
+			setTimeout( async ()=>{
+				const answer = await response.text();
+				GPTAnswer.innerHTML = await answer
+			}, 2000)
+		}
 		askq()
 	}
 
